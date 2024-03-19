@@ -1,0 +1,52 @@
+version: 1
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - main: ./cmd/tango/main.go
+    ldflags:
+      - -s -w
+      - -X "{{.ModulePath}}/internal/constant.ApplicationName={{.ProjectName}}"
+      - -X "{{.ModulePath}}/internal/constant.ApplicationVersion={{.Version}} {{.FullCommit}}"
+    tags:
+      - release
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{.ProjectName}}_
+      {{- title .Os}}_
+      {{- if eq .Arch "amd64"}}x86_64
+      {{- else if eq .Arch "386"}}i386
+      {{- else}}{{.Arch}}{{end}}
+      {{- if .Arm}}v{{.Arm}}{{end}}
+    format_overrides:
+      - goos: windows
+        format: zip
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+scoops:
+  - repository:
+      owner: golang-mods
+      name: scoop-bucket
+      token: "{{.Env.GITHUB_PERSONAL_AUTH_TOKEN}}"
+
+brews:
+  - repository:
+      owner: golang-mods
+      name: homebrew-tap
+      token: "{{.Env.GITHUB_PERSONAL_AUTH_TOKEN}}"
