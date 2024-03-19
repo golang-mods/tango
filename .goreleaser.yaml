@@ -43,10 +43,10 @@ scoops:
   - repository:
       owner: golang-mods
       name: scoop-bucket
-      token: "{{.Env.GITHUB_PERSONAL_AUTH_TOKEN}}"
+      token: "{{.Env.GORELEASER_PUBLISH_TOKEN}}"
 
 brews:
   - repository:
       owner: golang-mods
       name: homebrew-tap
-      token: "{{.Env.GITHUB_PERSONAL_AUTH_TOKEN}}"
+      token: "{{.Env.GORELEASER_PUBLISH_TOKEN}}"
