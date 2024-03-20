@@ -1,6 +1,5 @@
 package constant
 
-var (
-	ApplicationName    = "unknown"
-	ApplicationVersion = "unknown"
-)
+const ApplicationName = "tango"
+
+var ApplicationVersion = "unknown"

@@ -8,7 +8,6 @@ builds:
   - main: ./cmd/tango/main.go
     ldflags:
       - -s -w
-      - -X "{{.ModulePath}}/internal/constant.ApplicationName={{.ProjectName}}"
       - -X "{{.ModulePath}}/internal/constant.ApplicationVersion={{.Version}} {{.FullCommit}}"
     tags:
       - release

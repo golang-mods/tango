@@ -1,9 +1,8 @@
 package constant
 
-var (
+const (
 	ManifestFileName      = ApplicationName + ".toml"
 	ManifestLockFileName  = ApplicationName + "-lock.toml"
 	BinariesDirectoryName = ApplicationName + "-tools"
+	GoModFile             = "go.mod"
 )
-
-const GoModFile = "go.mod"

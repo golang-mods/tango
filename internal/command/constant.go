@@ -9,6 +9,5 @@ const (
 
 	examplePath            = "example.com/example/command"
 	examplePathWithVersion = examplePath + "@^1.2.0"
+	examplePrefix          = "  " + constant.ApplicationName
 )
-
-var examplePrefix = "  " + constant.ApplicationName
