@@ -39,7 +39,8 @@ changelog:
       - "^test:"
 
 scoops:
-  - repository:
+  - folder: bucket
+    repository:
       owner: golang-mods
       name: scoop-bucket
       token: "{{.Env.GORELEASER_PUBLISH_TOKEN}}"
