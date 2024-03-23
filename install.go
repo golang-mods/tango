@@ -64,7 +64,7 @@ func (manager *Manager) Install(packages []string, options ...InstallOption) err
 			return err
 		}
 
-		dupTools, _, dupPkgs, addPkgs := sorted.IntersectionXorWith(file.Manifest().Tools, pkgs, manifest.ComapreName)
+		dupTools, keepTools, dupPkgs, addPkgs := sorted.IntersectionXorWith(file.Manifest().Tools, pkgs, manifest.ComapreName)
 		for i := range len(dupPkgs) {
 			tool := &dupTools[i]
 			pkg := dupPkgs[i]
@@ -72,7 +72,9 @@ func (manager *Manager) Install(packages []string, options ...InstallOption) err
 			tool.Env = pkg.Env
 		}
 
-		file.Manifest().Tools = sorted.UnionWith(dupTools, addPkgs, manifest.ComapreName)
+		tools := sorted.UnionWith(dupTools, keepTools, manifest.ComapreName)
+		file.Manifest().Tools = sorted.UnionWith(tools, addPkgs, manifest.ComapreName)
+
 		file.Updated()
 	}
 
