@@ -7,6 +7,7 @@ import (
 
 var uninstallCommand = cobra.Command{
 	Use:     "uninstall package [package]...",
+	Aliases: []string{"un"},
 	Short:   "Uninstall tools",
 	Example: examplePrefix + " uninstall " + examplePath,
 	RunE: createRun(func(command *cobra.Command, arguments []string, manager *tango.Manager) error {

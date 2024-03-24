@@ -7,8 +7,9 @@ import (
 )
 
 var installCommand = cobra.Command{
-	Use:   "install [package]...",
-	Short: "Install tools",
+	Use:     "install [package]...",
+	Aliases: []string{"i"},
+	Short:   "Install tools",
 	Example: examplePrefix + " install\n" +
 		examplePrefix + " install " + examplePath + "\n" +
 		examplePrefix + " install " + examplePathWithVersion + "\n\n" +

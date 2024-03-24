@@ -9,8 +9,9 @@ import (
 )
 
 var listCommand = cobra.Command{
-	Use:   "list",
-	Short: "List installed tools",
+	Use:     "list",
+	Aliases: []string{"l"},
+	Short:   "List installed tools",
 	RunE: createRun(func(command *cobra.Command, arguments []string, manager *tango.Manager) error {
 		binaries, err := manager.List()
 		if err != nil {

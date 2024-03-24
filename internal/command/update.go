@@ -6,8 +6,9 @@ import (
 )
 
 var updateCommand = cobra.Command{
-	Use:   "update [package]...",
-	Short: "Update tools",
+	Use:     "update [package]...",
+	Aliases: []string{"up"},
+	Short:   "Update tools",
 	Example: examplePrefix + " update\n" +
 		examplePrefix + " update " + examplePath,
 	RunE: createRun(func(command *cobra.Command, arguments []string, manager *tango.Manager) error {
