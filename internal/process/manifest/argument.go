@@ -1,6 +1,7 @@
 package manifest
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/golang-mods/tango/internal/gocommand"
@@ -29,9 +30,9 @@ func ParseArgument(command *gocommand.Memorized, text string) (ManifestTool, err
 			return ManifestTool{}, err
 		}
 
-		version, err := lo.Last(versions.Versions)
-		if err != nil {
-			return ManifestTool{}, err
+		version, ok := lo.Last(versions.Versions)
+		if !ok {
+			return ManifestTool{}, errors.New("versions is empty")
 		}
 
 		versionText += version.String()
